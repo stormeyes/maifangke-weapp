@@ -1,0 +1,31 @@
+{
+  "name": "maifangke",
+  "version": "1.0.0",
+  "description": "买房客, 专业买房子",
+  "main": "app.js",
+  "dependencies": {
+    "vant-weapp": "^0.5.22"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stormeyes/maifangke-miniapp.git"
+  },
+  "keywords": [
+    "深圳",
+    "买房子",
+    "看房",
+    "链家",
+    "安居客",
+    "学位房"
+  ],
+  "author": "kongkongyzt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stormeyes/maifangke-miniapp/issues"
+  },
+  "homepage": "https://github.com/stormeyes/maifangke-miniapp#readme"
+}

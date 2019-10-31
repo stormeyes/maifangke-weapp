@@ -1,0 +1,36 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/logs/logs"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "买房客",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "selectedColor": "#00a8f3",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "房源",
+                "iconPath": "icons/house.png",
+                "selectedIconPath": "icons/house_selected.png"
+            },
+            {
+                "pagePath": "pages/index/index",
+                "text": "学位",
+                "iconPath": "icons/school.png",
+                "selectedIconPath": "icons/school_selected.png"
+            },
+            {
+                "pagePath": "pages/logs/logs",
+                "text": "更多",
+                "iconPath": "icons/more.png",
+                "selectedIconPath": "icons/more_selected.png"
+            }
+        ]
+    },
+    "sitemapLocation": "sitemap.json"
+}
