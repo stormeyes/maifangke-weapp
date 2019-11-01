@@ -1,13 +1,29 @@
 Page({
     data: {
-        active: 0,
-        icon: {
-            normal: '//img.yzcdn.cn/icon-normal.png',
-            active: '//img.yzcdn.cn/icon-active.png'
-        }
+        show: false,
+        actions: [
+            {
+                name: '选项'
+            },
+            {
+                name: '选项'
+            },
+            {
+                name: '选项',
+                subname: '副文本',
+                openType: 'share'
+            }
+        ]
     },
 
-    onChange(event) {
+    onClose() {
+        this.setData({ show: false });
+    },
+
+    onSelect(event) {
         console.log(event.detail);
+    },
+    showPopup(event) {
+        this.setData({ show: true });
     }
 });

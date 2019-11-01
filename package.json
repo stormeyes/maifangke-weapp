@@ -6,7 +6,9 @@
   "dependencies": {
     "vant-weapp": "^0.5.22"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.0.2"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -27,5 +29,10 @@
   "bugs": {
     "url": "https://github.com/stormeyes/maifangke-miniapp/issues"
   },
-  "homepage": "https://github.com/stormeyes/maifangke-miniapp#readme"
+  "homepage": "https://github.com/stormeyes/maifangke-miniapp#readme",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }

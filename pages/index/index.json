@@ -1,6 +1,11 @@
 {
     "usingComponents": {
         "van-button": "vant-weapp/button",
-        "van-search": "vant-weapp/search"
+        "van-search": "vant-weapp/search",
+        "van-row": "vant-weapp/row",
+        "van-col": "vant-weapp/col",
+        "van-action-sheet": "vant-weapp/action-sheet",
+        "van-collapse": "vant-weapp/collapse",
+        "van-collapse-item": "vant-weapp/collapse-item"
     }
 }
