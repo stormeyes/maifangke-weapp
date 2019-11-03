@@ -4,8 +4,12 @@
         "van-search": "vant-weapp/search",
         "van-row": "vant-weapp/row",
         "van-col": "vant-weapp/col",
-        "van-action-sheet": "vant-weapp/action-sheet",
-        "van-collapse": "vant-weapp/collapse",
-        "van-collapse-item": "vant-weapp/collapse-item"
+        "van-tab": "vant-weapp/tab",
+        "van-tabs": "vant-weapp/tabs",
+        "van-cell-group": "vant-weapp/cell-group",
+        "van-cell": "vant-weapp/cell",
+        "van-tree-select": "vant-weapp/tree-select",
+        "van-checkbox": "vant-weapp/checkbox",
+        "van-checkbox-group": "vant-weapp/checkbox-group"
     }
 }

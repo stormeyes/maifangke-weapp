@@ -1,7 +1,6 @@
 {
     "pages": [
-        "pages/index/index",
-        "pages/logs/logs"
+        "pages/index/index"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -10,7 +9,7 @@
         "navigationBarTextStyle": "black"
     },
     "tabBar": {
-        "selectedColor": "#00a8f3",
+        "selectedColor": "#ee0a24",
         "list": [
             {
                 "pagePath": "pages/index/index",
@@ -25,7 +24,7 @@
                 "selectedIconPath": "icons/school_selected.png"
             },
             {
-                "pagePath": "pages/logs/logs",
+                "pagePath": "pages/index/index",
                 "text": "更多",
                 "iconPath": "icons/more.png",
                 "selectedIconPath": "icons/more_selected.png"
