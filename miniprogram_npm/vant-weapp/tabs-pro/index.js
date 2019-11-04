@@ -141,6 +141,9 @@ VantComponent({
                 this.currentName = computedName;
                 this.trigger('change', computedName);
                 this.setActiveTab();
+            } else {
+                this.currentName = 999;
+                this.setActiveTab();
             }
         },
         setLine(skipTransition) {

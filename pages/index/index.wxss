@@ -1,0 +1,16 @@
+.btn {
+    margin: 5px;
+}
+
+.tab-content {
+    padding-top: 10px;
+}
+
+.value-class {
+    flex: none !important;
+}
+
+.no-bold {
+    font-weight: normal !important;
+    color: gray;
+}

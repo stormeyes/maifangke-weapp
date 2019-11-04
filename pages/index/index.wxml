@@ -3,24 +3,38 @@
 </van-row>
 <van-tabs active="{{ tabActive }}" bind:change="onChange">
   <van-tab title="区域">
-    <van-tree-select items="{{ locations }}"/>
+    <van-tree-select items="{{ locations }}" main-item-class="no-bold" content-item-class="no-bold"/>
   </van-tab>
-  <van-tab title="价格">
-    <van-checkbox-group value="{{ result }}" bind:change="onChange">
-        <van-checkbox name="a">复选框 a</van-checkbox>
-        <van-checkbox name="b">复选框 b</van-checkbox>
-        <van-checkbox name="c">复选框 c</van-checkbox>
-    </van-checkbox-group>
+  <van-tab title="价格" custom-class="tab-content">
+      <van-row>
+          <van-col span="6"><van-button type="primary" plain="{{ plain }}" bind:click="onBtnClick" size="small" custom-class="btn">200万以下</van-button></van-col>
+          <van-col span="6"><van-button type="primary" plain="{{ plain }}" bind:click="onBtnClick" size="small" custom-class="btn">200-300万</van-button></van-col>
+          <van-col span="6"><van-button type="primary" plain="{{ plain }}" bind:click="onBtnClick" size="small" custom-class="btn">300-400万</van-button></van-col>
+          <van-col span="6"><van-button type="primary" plain="{{ plain }}" bind:click="onBtnClick" size="small" custom-class="btn">400-500万</van-button></van-col>
+      </van-row>
+      <van-row>
+          <van-col span="6"><van-button type="primary" plain="{{ plain }}" bind:click="onBtnClick" size="small" custom-class="btn">500-800万</van-button></van-col>
+          <van-col span="6"><van-button type="primary" plain="{{ plain }}" bind:click="onBtnClick" size="small" custom-class="btn">800-1000万</van-button></van-col>
+          <van-col span="6"><van-button type="primary" plain="{{ plain }}" bind:click="onBtnClick" size="small" custom-class="btn">1000-2000万</van-button></van-col>
+          <van-col span="6"><van-button type="primary" plain="{{ plain }}" bind:click="onBtnClick" size="small" custom-class="btn">2000万以上</van-button></van-col>
+      </van-row>
   </van-tab>
   <van-tab title="房型">
-    <van-checkbox-group value="{{ result }}" bind:change="onChange">
-        <van-checkbox name="a">单间</van-checkbox>
-        <van-checkbox name="b">一房</van-checkbox>
-        <van-checkbox name="c">两房</van-checkbox>
-        <van-checkbox name="b">三房</van-checkbox>
-        <van-checkbox name="c">四房</van-checkbox>
-        <van-checkbox name="c">五房</van-checkbox>
-    </van-checkbox-group>
+      <van-checkbox-group value="{{ result }}" bind:change="onChange">
+          <van-cell-group >
+              <van-cell
+                      wx:for="{{ list }}"
+                      wx:key="index"
+                      title="{{ item }}"
+                      value-class="value-class"
+                      clickable
+                      data-index="{{ index }}"
+                      bind:click="toggle"
+              >
+                  <van-checkbox catch:tap="noop" class="checkboxes-{{ index }}" name="{{ item }}" shape="square" />
+              </van-cell>
+          </van-cell-group>
+      </van-checkbox-group>
   </van-tab>
   <van-tab title="更多">更多</van-tab>
 </van-tabs>
@@ -33,20 +47,6 @@
           <view>wtf</view>
       </view>
   </van-cell>
-    <van-cell title="南山豪庭 2房 64㎡" value="500万, 首付199万" border="{{ false }}" use-label-slot="true">
-        <view slot="label">
-            <view>wtf</view>
-            <view>wtf</view>
-            <view>wtf</view>
-        </view>
-    </van-cell>
-    <van-cell title="南山豪庭 2房 64㎡" value="500万, 首付199万" border="{{ false }}" use-label-slot="true">
-        <view slot="label">
-            <view>wtf</view>
-            <view>wtf</view>
-            <view>wtf</view>
-        </view>
-    </van-cell>
     <van-cell title="南山豪庭 2房 64㎡" value="500万, 首付199万" border="{{ false }}" use-label-slot="true">
         <view slot="label">
             <view>wtf</view>
