@@ -23,7 +23,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.9.1",
-	"appid": "wx2838730e6aee333d",
+	"appid": "wx50d31a66bc7f38ec",
 	"projectname": "maifangke",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -31,7 +31,7 @@
 	"isGameTourist": false,
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
-	"cloudfunctionRoot": "./functions/",
+	"cloudfunctionRoot": "functions/",
 	"condition": {
 		"search": {
 			"current": -1,
