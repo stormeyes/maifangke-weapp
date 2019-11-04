@@ -3,7 +3,7 @@ const locations = require("../../contants/location.js");
 Page({
     data: {
         locations,
-        tabActive: 999
+        tabActive: 0
     },
 
     onChange(event) {
