@@ -4,7 +4,7 @@
   "description": "买房客, 专业买房子",
   "main": "app.js",
   "dependencies": {
-    "vant-weapp": "^0.5.22"
+    "vant-weapp": "^1.0.0-beta.2"
   },
   "devDependencies": {
     "cz-conventional-changelog": "^3.0.2"

@@ -1,16 +1,18 @@
 <wxs src="../wxs/utils.wxs" module="utils" />
 
 <van-cell
+  size="{{ size }}"
   icon="{{ leftIcon }}"
   title="{{ label }}"
   center="{{ center }}"
   border="{{ border }}"
   is-link="{{ isLink }}"
   required="{{ required }}"
-  custom-style="{{ customStyle }}"
+  clickable="{{ clickable }}"
   title-width="{{ titleWidth }}"
+  custom-style="{{ customStyle }}"
+  arrow-direction="{{ arrowDirection }}"
   custom-class="van-field"
-  size="{{ size }}"
 >
   <slot name="left-icon" slot="icon" />
   <slot name="label" slot="title" />

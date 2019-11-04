@@ -4,11 +4,12 @@
     ],
     "window": {
         "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#fff",
+        "navigationBarBackgroundColor": "#ee0a24",
         "navigationBarTitleText": "买房客",
-        "navigationBarTextStyle": "black"
+        "navigationBarTextStyle": "white"
     },
     "tabBar": {
+        "color": "#8a8a8a",
         "selectedColor": "#ee0a24",
         "list": [
             {
