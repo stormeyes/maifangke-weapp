@@ -1,5 +1,5 @@
 {
-    "name": "add",
+    "name": "query_house",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",

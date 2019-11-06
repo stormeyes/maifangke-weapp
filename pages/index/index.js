@@ -9,6 +9,23 @@ Page({
         result: ['a', 'b']
     },
 
+    onLoad() {
+        wx.cloud.init({env: "debug-enbxd"})
+        wx.cloud.callFunction({
+            // 云函数名称
+            name: 'add',
+            // 传给云函数的参数
+            data: {
+                a: 1,
+                b: 2,
+            },
+        })
+            .then(res => {
+                console.log(res) // 3
+            })
+            .catch(console.error)
+    },
+
     onChange(event) {
         this.setData({
             result: event.detail
