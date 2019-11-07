@@ -13,7 +13,7 @@ Page({
         wx.cloud.init({env: "debug-enbxd"})
         wx.cloud.callFunction({
             // 云函数名称
-            name: 'add',
+            name: 'query_house',
             // 传给云函数的参数
             data: {
                 a: 1,
