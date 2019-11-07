@@ -1,46 +1,140 @@
 const locations = require("../../contants/location.js");
+import Toast from '../../miniprogram_npm/vant-weapp/toast/toast';
 
 Page({
     data: {
+        q: undefined,
         locations,
         tabActive: 999,
         plain: true,
-        list: ['单间', '一房', '两房', '三房', '四房', '四房+'],
-        result: ['a', 'b']
+        rooms: [{ name: "单间", value: 0 }, { name: "一房", value: 1 }, { name: "两房", value: 2 }, { name: "三房", value: 3 }, { name: "四房", value: 4 }],
+        selectedRooms: [],
+        locationMainActiveIndex: 0,
+        locationActiveIds: [],
+        houses: [],
     },
 
     onLoad() {
-        wx.cloud.init({env: "debug-enbxd"})
-        wx.cloud.callFunction({
-            // 云函数名称
-            name: 'query_house',
-            // 传给云函数的参数
-            data: {
-                a: 1,
-                b: 2,
-            },
-        })
-            .then(res => {
-                console.log(res) // 3
-            })
-            .catch(console.error)
-    },
-
-    onChange(event) {
-        this.setData({
-            result: event.detail
-        });
+        this.onFetchHouse();
     },
 
     onBtnClick() {
-        this.setData({plain: !this.data.plain})
+        this.setData({
+            plain: !this.data.plain
+        })
     },
 
     toggle(event) {
-        const { index } = event.currentTarget.dataset;
+        const {
+            index
+        } = event.currentTarget.dataset;
         const checkbox = this.selectComponent(`.checkboxes-${index}`);
         checkbox.toggle();
     },
 
-    noop() {}
+    onClickNav({
+        detail = {}
+    }) {
+        this.setData({
+            locationMainActiveIndex: detail.index || 0
+        });
+    },
+
+    onClickItem({
+        detail = {}
+    }) {
+        const {
+            locationActiveIds
+        } = this.data;
+
+        const index = locationActiveIds.indexOf(detail.id);
+        if (index > -1) {
+            locationActiveIds.splice(index, 1);
+        } else {
+            locationActiveIds.push(detail.id);
+        }
+
+        this.setData({
+            locationActiveIds
+        });
+    },
+
+    onFetchHouse() {
+        const that = this;
+        Toast.loading({
+            mask: true,
+            forbidClick: true,
+            duration: 0,
+            loadingType: "spinner",
+            message: '加载中...',
+            selector: '#custom-selector'
+        });
+        wx.cloud.init({
+            env: "debug-enbxd"
+        })
+        wx.cloud.callFunction({
+                name: 'query_house',
+                data: {
+                    locationIds: that.data.locationActiveIds,
+                    q: that.data.q,
+                    rooms: that.data.selectedRooms
+                },
+            })
+            .then(res => {
+                res.result.map(item => {
+                    item.area = Math.ceil(item.area)
+                    item.monthlyMortgage = item.monthlyMortgage.toFixed(1)
+
+                    if (item.room == 1 && item.ting == 0) {
+                        item.roomType = '单间';
+                    } else {
+                        item.roomType = `${item.room}房`;
+                    }
+
+                    if (item.loan) {
+                        item.loanInfo = `欠${item.loan.toFixed(1)}万`;
+                    } else {
+                        item.loanInfo = `无欠款`;
+                    }
+
+                    if (item.isUnique == '暂无数据') {
+                        item.isUnique = '';
+                    }
+                })
+
+                that.setData({
+                    houses: res.result
+                })
+            })
+            .catch(console.error)
+            .finally(() => {
+                Toast.clear()
+                that.setData({ tabActive: 999 })
+            });
+    },
+
+    onClearLocation() {
+        this.setData({
+            locationMainActiveIndex: 0,
+            locationActiveIds: []
+        });
+    },
+
+    onClearRooms() {
+        this.setData({
+            selectedRooms: []
+        });
+    },
+
+    noop() { },
+
+    onUpdateQ({ detail }) {
+        this.setData({ q:detail })
+    },
+
+    onUpdateSelectedRooms({detail}) {
+        this.setData({
+            selectedRooms: detail
+        });
+    }
 });

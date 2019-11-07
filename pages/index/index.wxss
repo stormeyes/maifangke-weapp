@@ -14,3 +14,21 @@
     font-weight: normal !important;
     color: gray;
 }
+
+.house_detail {
+    padding: 10px 15px;
+    font-size: 12px;
+}
+
+.nav-btn {
+    float: right;
+    margin: 10px 10px 10px 0;
+}
+
+.van-cell__title {
+    font-weight: bold;
+}
+
+.van-cell__value {
+    color: red;
+}

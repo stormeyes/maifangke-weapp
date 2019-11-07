@@ -10,6 +10,10 @@
         "van-cell": "vant-weapp/cell",
         "van-tree-select": "vant-weapp/tree-select",
         "van-checkbox": "vant-weapp/checkbox",
-        "van-checkbox-group": "vant-weapp/checkbox-group"
+        "van-checkbox-group": "vant-weapp/checkbox-group",
+        "van-panel": "vant-weapp/panel",
+        "van-divider": "vant-weapp/divider",
+        "van-tag": "vant-weapp/tag",
+        "van-toast": "vant-weapp/toast"
     }
 }
