@@ -14,6 +14,8 @@
         "van-panel": "vant-weapp/panel",
         "van-divider": "vant-weapp/divider",
         "van-tag": "vant-weapp/tag",
-        "van-toast": "vant-weapp/toast"
-    }
+        "van-toast": "vant-weapp/toast",
+        "van-loading": "vant-weapp/loading"
+    },
+    "enablePullDownRefresh": true
 }

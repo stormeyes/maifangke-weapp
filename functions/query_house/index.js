@@ -51,6 +51,8 @@ exports.main = async (event, context) => {
     });
 
     cond = [];
+    const limit = event.pageSize || 20;
+    const offset = ((event.page || 1) - 1) * limit;
 
     if (event.locationIds && event.locationIds.length) {
         cond.push(`house.locationId IN (${event.locationIds.join(',')})`)
@@ -68,19 +70,31 @@ exports.main = async (event, context) => {
         cond.push(`department.name like "%${event.q}%"`)
     }
 
-    const whereSQL = cond.length ? "where " + cond.join(" and ") : "";
+    if (event.prices && event.prices.length) {
+        const temp = [];
+        event.prices.map(price => {
+            if (price.min == 0) {
+                temp.push(`(house.price <= ${price.max})`)
+            } else if (price.max == 0) {
+                temp.push(`(house.price >= ${price.min}`)
+            } else {
+                temp.push(`(house.price BETWEEN ${price.min} and ${price.max})`)
+            }
+        });
+        cond.push(temp.join(' OR '));
+    }
 
-    console.log(whereSQL)
+    const whereSQL = cond.length ? "where " + cond.join(" and ") : "";
 
     const [houses, fields] = await connection.execute(`SELECT 
         house.houseId, house.houseType, house.orientation, house.area, house.price, house.room, house.ting, house.loan, house.isUnique, 
-        house.registerTime, house.monthlyMortgage, department.name, department.locationId, house.departmentId
+        house.registerTime, house.monthlyMortgage, department.name, department.locationId, house.departmentId, house.floor
         FROM house 
         left join department 
         on house.departmentId = department.departmentId
         ${whereSQL}
         order by house.houseId desc 
-        limit 20`);
+        limit ${offset}, ${limit}`);
     
     for (i=0; i<houses.length;i++) {
         houses[i].location = await get_full_location_by_id(connection, houses[i].locationId);
@@ -88,4 +102,4 @@ exports.main = async (event, context) => {
     }
 
     return houses;
-}
+};
