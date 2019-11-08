@@ -13,31 +13,18 @@
     </van-tab>
     <van-tab title="价格" custom-class="tab-content">
         <van-row>
-            <van-col span="6">
-                <van-button type="primary" plain="{{ plain }}" bind:click="onBtnClick" size="small" custom-class="btn">200万以下</van-button>
-            </van-col>
-            <van-col span="6">
-                <van-button type="primary" plain="{{ plain }}" bind:click="onBtnClick" size="small" custom-class="btn">200-300万</van-button>
-            </van-col>
-            <van-col span="6">
-                <van-button type="primary" plain="{{ plain }}" bind:click="onBtnClick" size="small" custom-class="btn">300-400万</van-button>
-            </van-col>
-            <van-col span="6">
-                <van-button type="primary" plain="{{ plain }}" bind:click="onBtnClick" size="small" custom-class="btn">400-500万</van-button>
-            </van-col>
-        </van-row>
-        <van-row>
-            <van-col span="6">
-                <van-button type="primary" plain="{{ plain }}" bind:click="onBtnClick" size="small" custom-class="btn">500-800万</van-button>
-            </van-col>
-            <van-col span="6">
-                <van-button type="primary" plain="{{ plain }}" bind:click="onBtnClick" size="small" custom-class="btn">800-1000万</van-button>
-            </van-col>
-            <van-col span="6">
-                <van-button type="primary" plain="{{ plain }}" bind:click="onBtnClick" size="small" custom-class="btn">1000-2000万</van-button>
-            </van-col>
-            <van-col span="6">
-                <van-button type="primary" plain="{{ plain }}" bind:click="onBtnClick" size="small" custom-class="btn">2000万以上</van-button>
+            <van-col span="6" wx:for="{{ priceRange }}" wx:key="index">
+                <van-button 
+                    type="primary" 
+                    plain="{{ !!selectedPrices.includes(index) }}" 
+                    bind:click="onBtnClick" 
+                    size="small" 
+                    custom-class="btn">
+                    {{selectedPrices}}
+                        <text wx:if="{{item.min==0}}">{{item.max}}万以下</text>
+                        <text wx:elif="{{item.max==0}}">{{item.min}}万以上</text>
+                        <text wx:else>{{item.min}}-{{item.max}}万</text>
+                    </van-button>
             </van-col>
         </van-row>
         <van-row>

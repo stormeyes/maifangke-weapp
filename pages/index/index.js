@@ -8,6 +8,10 @@ Page({
         tabActive: 999,
         plain: true,
         rooms: [{ name: "单间", value: 0 }, { name: "一房", value: 1 }, { name: "两房", value: 2 }, { name: "三房", value: 3 }, { name: "四房", value: 4 }],
+        priceRange: [
+            {min:0, max:200}, {min:200, max:300}, {min:300, max:400}, {min:400, max:500}, {min:500, max:600}, {min:600, max:0}
+        ],
+        selectedPrices: [1, 3],
         selectedRooms: [],
         locationMainActiveIndex: 0,
         locationActiveIds: [],
@@ -15,7 +19,7 @@ Page({
     },
 
     onLoad() {
-        this.onFetchHouse();
+        //this.onFetchHouse();
     },
 
     onBtnClick() {
