@@ -124,7 +124,11 @@ Page({
                     if (item.isUnique == '暂无数据') {
                         item.isUnique = '';
                     }
-                })
+
+                    if (item.ladderPerHouseholds == '-') {
+                        item.ladderPerHouseholds = '无电梯';
+                    }
+                });
 
                 isAppend ? that.setData({
                     houses: that.data.houses.concat(res.result)
@@ -135,7 +139,9 @@ Page({
             .catch(console.error)
             .finally(() => {
                 Toast.clear();
-                that.setData({ tabActive: 999, fetching: false })
+                that.setData({ tabActive: 999, fetching: false });
+                const tabs = this.selectComponent(`.happy`);
+                tabs.setActive(999);
             });
     },
 

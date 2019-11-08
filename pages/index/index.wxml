@@ -1,7 +1,7 @@
 <van-row>
     <van-search value="{{ q }}" placeholder="请输入小区名称" bind:search="onFetchHouse" bind:change="onUpdateQ"/>
 </van-row>
-<van-tabs active="{{ tabActive }}" bind:change="onChange">
+<van-tabs active="{{ tabActive }}" bind:change="onChange" class="happy">
     <van-tab title="区域">
         <van-tree-select items="{{ locations }}" main-active-index="{{ locationMainActiveIndex }}" active-id="{{ locationActiveIds }}" bind:click-nav="onClickNav" bind:click-item="onClickItem" main-item-class="no-bold" content-item-class="no-bold" />
         <van-row>
