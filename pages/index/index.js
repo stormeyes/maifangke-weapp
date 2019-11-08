@@ -105,7 +105,9 @@ Page({
             .then(res => {
                 res.result.map(item => {
                     item.area = Math.ceil(item.area);
-                    item.monthlyMortgage = item.monthlyMortgage.toFixed(1)
+                    item.monthlyMortgage = item.monthlyMortgage.toFixed(1);
+                    item.floor = item.floor.substring(0,3);
+                    item.rentPrice = item.rentPrice || '-';
 
                     if (item.room == 1 && item.ting == 0) {
                         item.roomType = '单间';
@@ -169,7 +171,7 @@ Page({
     },
 
     onReachBottom() {
-        const {page, pageSize, fetching} = this.data;
+        const {page, fetching} = this.data;
         if (fetching) {
             return;
         }

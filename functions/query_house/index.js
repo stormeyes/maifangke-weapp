@@ -88,7 +88,7 @@ exports.main = async (event, context) => {
 
     const [houses, fields] = await connection.execute(`SELECT 
         house.houseId, house.houseType, house.orientation, house.area, house.price, house.room, house.ting, house.loan, house.isUnique, 
-        house.registerTime, house.monthlyMortgage, department.name, department.locationId, house.departmentId, house.floor
+        house.registerTime, house.monthlyMortgage, department.name, department.locationId, house.departmentId, house.floor, house.rentPrice, house.ladderPerHouseholds
         FROM house 
         left join department 
         on house.departmentId = department.departmentId

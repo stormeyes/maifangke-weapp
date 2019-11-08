@@ -57,10 +57,10 @@
             <van-tag type="warning">学位</van-tag> {{ item.schools }}
         </view>
         <view class="house_detail">
-            电梯 | 低楼层 | {{ item.orientation }} | {{ item.houseType }} | {{ item.registerTime }}{{ item.isUnique }}
+            {{ item.ladderPerHouseholds }} | {{ item.floor }} | {{ item.orientation }} | {{ item.houseType }} | {{ item.registerTime }}{{ item.isUnique }}
         </view>
         <view class="house_detail">
-            月供{{ item.monthlyMortgage }}万 | 房租0.7万 | {{ item.loanInfo }}
+            月供{{ item.monthlyMortgage }}万 | 房租{{ item.rentPrice }}万 | {{ item.loanInfo }}
         </view>
         <van-divider />
     </van-panel>
