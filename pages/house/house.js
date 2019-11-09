@@ -109,7 +109,7 @@ Page({
                     item.floor = item.floor.substring(0,3);
                     item.rentPrice = item.rentPrice || '-';
 
-                    if (item.room == 1 && item.ting == 0) {
+                    if (item.room == 0 || (item.room == 1 && [0, ''].includes(item.ting))) {
                         item.roomType = '单间';
                     } else {
                         item.roomType = `${item.room}房`;

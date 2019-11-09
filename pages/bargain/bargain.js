@@ -13,7 +13,7 @@ Page({
         plain: true,
         rooms: [{ name: "单间", value: 0 }, { name: "一房", value: 1 }, { name: "两房", value: 2 }, { name: "三房", value: 3 }, { name: "四房", value: 4 }],
         priceRange: [
-            {min:0, max:200}, {min:200, max:300}, {min:300, max:400}, {min:400, max:500}, {min:500, max:600}, {min:600, max:0}
+            {min:0, max:50}, {min:50, max:70}, {min:70, max:90}, {min:90, max:110}, {min:110, max:140}, {min:140, max:170}
         ],
         selectedPrices: [],
         selectedRooms: [],
@@ -86,7 +86,7 @@ Page({
             env: "debug-enbxd"
         });
         wx.cloud.callFunction({
-                name: 'query_house',
+                name: 'query_bargain',
                 data: {
                     page: that.data.page,
                     pageSize: that.data.pageSize,
@@ -105,11 +105,8 @@ Page({
             .then(res => {
                 res.result.map(item => {
                     item.area = Math.ceil(item.area);
-                    item.monthlyMortgage = item.monthlyMortgage.toFixed(1);
-                    item.floor = item.floor.substring(0,3);
-                    item.rentPrice = item.rentPrice || '-';
 
-                    if (item.room == 1 && item.ting == 0) {
+                    if (item.room == 0 || ( item.room == 1 && [0, ''].includes(item.ting)) ) {
                         item.roomType = '单间';
                     } else {
                         item.roomType = `${item.room}房`;

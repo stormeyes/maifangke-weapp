@@ -26,7 +26,7 @@ const get_full_location_by_id = async function (connection, location_id) {
     }
 
     return `${parentLocations[0].name} ${locations[0].name}`;
-}
+};
 
 const get_schools_by_department_id = async function (connection, department_id) {
     const [schools, _] = await connection.execute(`SELECT 
@@ -55,14 +55,14 @@ exports.main = async (event, context) => {
     const offset = ((event.page || 1) - 1) * limit;
 
     if (event.locationIds && event.locationIds.length) {
-        cond.push(`house.locationId IN (${event.locationIds.join(',')})`)
+        cond.push(`bargain.locationId IN (${event.locationIds.join(',')})`)
     }
 
     if (event.rooms && event.rooms.length) {
         if (event.rooms.includes(0)) {
-            cond.push(`house.room IN (${event.rooms.join(',')}) OR (ting=0 AND room IN (1, 0))`)
+            cond.push(`bargain.room IN (${event.rooms.join(',')}) OR (ting=0 AND room IN (1, 0))`)
         } else {
-            cond.push(`house.room IN (${event.rooms.join(',')})`)
+            cond.push(`bargain.room IN (${event.rooms.join(',')})`)
         }
     }
 
@@ -70,32 +70,17 @@ exports.main = async (event, context) => {
         cond.push(`department.name like "%${event.q}%"`)
     }
 
-    if (event.prices && event.prices.length) {
-        const temp = [];
-        event.prices.map(price => {
-            if (price.min == 0) {
-                temp.push(`(house.price <= ${price.max})`)
-            } else if (price.max == 0) {
-                temp.push(`(house.price >= ${price.min}`)
-            } else {
-                temp.push(`(house.price BETWEEN ${price.min} and ${price.max})`)
-            }
-        });
-        cond.push(temp.join(' OR '));
-    }
-
     const whereSQL = cond.length ? "where " + cond.join(" and ") : "";
 
     const [houses, fields] = await connection.execute(`SELECT 
-        house.houseId, house.houseType, house.orientation, house.area, house.price, house.room, house.ting, house.loan, house.isUnique, 
-        house.registerTime, house.monthlyMortgage, department.name, department.locationId, house.departmentId, house.floor, house.rentPrice, house.ladderPerHouseholds
+        bargain.houseId, bargain.houseType, bargain.area, bargain.bargainPrice, bargain.room, bargain.ting, 
+        department.name, department.locationId, bargain.departmentId, bargain.listedPrice, DATE_FORMAT(bargain.listedDate,'%Y-%m-%d') AS listedDate,
+        bargain.bargainDuration, DATE_FORMAT(bargain.bargainDate,'%Y-%m-%d') AS bargainDate
         FROM bargain
-        left join house
-        on bargain.houseId = house.houseId 
         left join department 
-        on house.departmentId = department.departmentId
+        on bargain.departmentId = department.departmentId
         ${whereSQL}
-        order by house.houseId desc 
+        order by bargainDate desc 
         limit ${offset}, ${limit}`);
 
     for (i = 0; i < houses.length; i++) {
