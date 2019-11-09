@@ -1,7 +1,7 @@
 {
     "pages": [
-        "pages/house/house",
-        "pages/bargain/bargain"
+        "pages/bargain/bargain",
+        "pages/house/house"
     ],
     "window": {
         "backgroundTextStyle": "light",

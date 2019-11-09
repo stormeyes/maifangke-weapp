@@ -1,2 +1,70 @@
-<!--pages/bargain.wxml-->
-<text>pages/bargain.wxml</text>
+<van-row>
+    <van-search value="{{ q }}" placeholder="请输入小区名称" bind:search="onFetchHouse" bind:change="onUpdateQ"/>
+</van-row>
+<van-tabs active="{{ tabActive }}" bind:change="onChange" class="happy">
+    <van-tab title="区域">
+        <van-tree-select items="{{ locations }}" main-active-index="{{ locationMainActiveIndex }}" active-id="{{ locationActiveIds }}" bind:click-nav="onClickNav" bind:click-item="onClickItem" main-item-class="no-bold" content-item-class="no-bold" />
+        <van-row>
+            <van-col offset="12" span="12">
+                <van-button type="danger" size="small" custom-class="nav-btn" bind:click="onFetchHouse">确定</van-button>
+                <van-button type="default" size="small" custom-class="nav-btn" bind:click="onClearLocation">重置</van-button>
+            </van-col>
+        </van-row>
+    </van-tab>
+    <van-tab title="价格" custom-class="tab-content">
+        <van-row>
+            <van-col span="6" wx:for="{{ priceRange }}" wx:key="index">
+                <van-button 
+                    type="warning" 
+                    plain="{{ !helpers.includes(selectedPrices, index) }}" 
+                    bind:click="updateSelectedPrice"
+                    data-index="{{ index }}" 
+                    size="small" 
+                    custom-class="btn">
+                        <text wx:if="{{item.min==0}}">{{item.max}}万以下</text>
+                        <text wx:elif="{{item.max==0}}">{{item.min}}万以上</text>
+                        <text wx:else>{{item.min}}-{{item.max}}万</text>
+                    </van-button>
+            </van-col>
+        </van-row>
+        <van-row>
+            <van-col offset="12" span="12">
+                <van-button type="danger" size="small" custom-class="nav-btn" bind:click="onFetchHouse">确定</van-button>
+                <van-button type="default" size="small" custom-class="nav-btn" bind:click="onClearPrices">重置</van-button>
+            </van-col>
+        </van-row>
+    </van-tab>
+    <van-tab title="房型">
+        <van-checkbox-group bind:change="onUpdateSelectedRooms" value="{{ selectedRooms }}">
+            <van-cell-group>
+                <van-cell wx:for="{{ rooms }}" wx:key="index" title="{{ item.name }}" clickable data-index="{{ index }}" bind:click="toggle" value-class="value-class">
+                    <van-checkbox catch:tap="noop" name="{{ item.value }}" shape="square" class="checkboxes-{{ index }}" />
+                </van-cell>
+            </van-cell-group>
+        </van-checkbox-group>
+        <van-row>
+            <van-col offset="12" span="12">
+                <van-button type="danger" size="small" custom-class="nav-btn" bind:click="onFetchHouse">确定</van-button>
+                <van-button type="default" size="small" custom-class="nav-btn" bind:click="onClearRooms">重置</van-button>
+            </van-col>
+        </van-row>
+    </van-tab>
+    <van-tab title="更多">更多</van-tab>
+</van-tabs>
+<van-row>
+    <van-panel wx:for="{{ houses }}" wx:key="index" title="{{ item.name }} {{ item.roomType }} {{ item.area }}㎡" status="{{ item.price }}万" desc="{{ item.location }}|2019-10-23">
+    </van-panel>
+</van-row>
+<van-row>
+    <van-col span="2" offset="11"><van-loading type="spinner" wx:if="{{ fetching }}"/></van-col>
+</van-row>
+<van-toast id="custom-selector" />
+<wxs module="helpers">
+var includes = function(array, needle) {
+    return array.indexOf(needle) > -1
+}
+
+module.exports = {
+    includes: includes
+};
+</wxs>
