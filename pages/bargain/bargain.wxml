@@ -49,7 +49,6 @@
             </van-col>
         </van-row>
     </van-tab>
-    <van-tab title="更多">更多</van-tab>
 </van-tabs>
 <van-row>
     <van-panel wx:for="{{ houses }}" wx:key="index" 
