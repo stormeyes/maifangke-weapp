@@ -37,6 +37,7 @@ Page({
         } = this.data;
 
         const index = selectedPrices.indexOf(dataset.index);
+
         if (index > -1) {
             selectedPrices.splice(index, 1);
         } else {

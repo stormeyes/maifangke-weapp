@@ -15,11 +15,11 @@
         <van-row>
             <van-col span="6" wx:for="{{ priceRange }}" wx:key="index">
                 <van-button 
-                    type="warning" 
                     plain="{{ !helpers.includes(selectedPrices, index) }}" 
                     bind:click="updateSelectedPrice"
                     data-index="{{ index }}" 
-                    size="small" 
+                    size="small"
+                    type="danger" 
                     custom-class="btn">
                         <text wx:if="{{!item.min}}">{{item.max}}万以下</text>
                         <text wx:elif="{{!item.max}}">{{item.min}}万以上</text>
@@ -56,7 +56,7 @@
             </view>
             <van-col span="6" wx:for="{{ areaRange }}" wx:key="index">
                 <van-button 
-                    type="warning" 
+                    type="danger" 
                     plain="{{ !helpers.includes(selectedAreas, index) }}" 
                     bind:click="onUpdateSelectedArea"
                     data-index="{{ index }}" 
@@ -186,7 +186,7 @@
     </van-tab>
 </van-tabs>
 <van-row>
-    <van-panel wx:for="{{ houses }}" wx:key="index" title="{{ item.name }} {{ item.roomType }} {{ item.area }}㎡" status="{{ item.price }}万" desc="{{ item.location }}">
+    <van-panel wx:for="{{ houses }}" wx:key="houseId" title="{{ item.name }} {{ item.roomType }} {{ item.area }}㎡" status="{{ item.price }}万" desc="{{ item.location }}">
         <view class="house_detail" wx:if="{{item.schools}}">
             <van-tag type="warning">学位</van-tag> {{ item.schools }}
         </view>

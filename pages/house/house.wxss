@@ -29,6 +29,7 @@
     font-weight: bold;
 }
 
-.van-cell__value {
-    color: red;
+.panel-index--van-panel__header-value {
+    font-weight: bold;
+    color: #e74c3c !important;
 }
