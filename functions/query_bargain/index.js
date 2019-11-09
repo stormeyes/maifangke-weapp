@@ -70,6 +70,20 @@ exports.main = async (event, context) => {
         cond.push(`department.name like "%${event.q}%"`)
     }
 
+    if (event.areas && event.areas.length) {
+        const temp = [];
+        event.areas.map(area => {
+            if (area.min == 0) {
+                temp.push(`(house.area <= ${area.max})`)
+            } else if (area.max == 0) {
+                temp.push(`(house.area >= ${area.min}`)
+            } else {
+                temp.push(`(house.price BETWEEN ${area.min} AND ${area.max})`)
+            }
+        });
+        cond.push(temp.join(' OR '));
+    }
+
     const whereSQL = cond.length ? "where " + cond.join(" and ") : "";
 
     const [houses, fields] = await connection.execute(`SELECT 

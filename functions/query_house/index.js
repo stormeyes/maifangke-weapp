@@ -70,6 +70,20 @@ exports.main = async (event, context) => {
         cond.push(`department.name like "%${event.q}%"`)
     }
 
+    if (event.areas && event.areas.length) {
+        const temp = [];
+        event.areas.map(area => {
+            if (area.min == 0) {
+                temp.push(`(house.area <= ${area.max})`)
+            } else if (area.max == 0) {
+                temp.push(`(house.area >= ${area.min}`)
+            } else {
+                temp.push(`(house.price BETWEEN ${area.min} AND ${area.max})`)
+            }
+        });
+        cond.push(temp.join(' OR '));
+    }
+
     if (event.prices && event.prices.length) {
         const temp = [];
         event.prices.map(price => {
@@ -78,7 +92,7 @@ exports.main = async (event, context) => {
             } else if (price.max == 0) {
                 temp.push(`(house.price >= ${price.min}`)
             } else {
-                temp.push(`(house.price BETWEEN ${price.min} and ${price.max})`)
+                temp.push(`(house.price BETWEEN ${price.min} AND ${price.max})`)
             }
         });
         cond.push(temp.join(' OR '));
