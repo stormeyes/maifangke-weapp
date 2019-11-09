@@ -1,8 +1,8 @@
 {
     "pages": [
-        "pages/bargain/bargain",
         "pages/house/house",
-        "pages/more/more"
+        "pages/more/more",
+        "pages/bargain/bargain"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -27,7 +27,7 @@
                 "selectedIconPath": "icons/bargain_selected.png"
             },
             {
-                "pagePath": "pages/house/house",
+                "pagePath": "pages/more/more",
                 "text": "更多",
                 "iconPath": "icons/more.png",
                 "selectedIconPath": "icons/more_selected.png"
