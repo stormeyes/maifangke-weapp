@@ -1,6 +1,7 @@
 {
     "pages": [
-        "pages/index/index"
+        "pages/house/house",
+        "pages/bargain/bargain"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -13,19 +14,19 @@
         "selectedColor": "#ee0a24",
         "list": [
             {
-                "pagePath": "pages/index/index",
+                "pagePath": "pages/house/house",
                 "text": "房源",
                 "iconPath": "icons/house.png",
                 "selectedIconPath": "icons/house_selected.png"
             },
             {
-                "pagePath": "pages/index/index",
-                "text": "学位",
-                "iconPath": "icons/school.png",
-                "selectedIconPath": "icons/school_selected.png"
+                "pagePath": "pages/bargain/bargain",
+                "text": "成交",
+                "iconPath": "icons/bargain.png",
+                "selectedIconPath": "icons/bargain_selected.png"
             },
             {
-                "pagePath": "pages/index/index",
+                "pagePath": "pages/house/house",
                 "text": "更多",
                 "iconPath": "icons/more.png",
                 "selectedIconPath": "icons/more_selected.png"
