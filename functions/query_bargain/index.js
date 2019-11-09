@@ -74,11 +74,11 @@ exports.main = async (event, context) => {
         const temp = [];
         event.areas.map(area => {
             if (area.min == 0) {
-                temp.push(`(house.area <= ${area.max})`)
+                temp.push(`(bargain.area <= ${area.max})`)
             } else if (area.max == 0) {
-                temp.push(`(house.area >= ${area.min}`)
+                temp.push(`(bargain.area >= ${area.min}`)
             } else {
-                temp.push(`(house.price BETWEEN ${area.min} AND ${area.max})`)
+                temp.push(`(bargain.area BETWEEN ${area.min} AND ${area.max})`)
             }
         });
         cond.push(temp.join(' OR '));

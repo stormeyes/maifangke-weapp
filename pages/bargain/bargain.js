@@ -4,7 +4,7 @@ import Toast from '../../miniprogram_npm/vant-weapp/toast/toast';
 Page({
     data: {
         page: 1,
-        pageSize: 10,
+        pageSize: 20,
         fetching: false,
         isEnd: false,
         q: undefined,
@@ -12,10 +12,10 @@ Page({
         tabActive: 999,
         plain: true,
         rooms: [{ name: "单间", value: 0 }, { name: "一房", value: 1 }, { name: "两房", value: 2 }, { name: "三房", value: 3 }, { name: "四房", value: 4 }],
-        priceRange: [
-            {min:0, max:50}, {min:50, max:70}, {min:70, max:90}, {min:90, max:110}, {min:110, max:140}, {min:140, max:170}
+        areaRange: [
+            {min:0, max:50}, {min:50, max:70}, {min:70, max:90}, {min:90, max:110}, {min:110, max:140}, {min:140, max:170}, {min:170, max:200}, {min:200}
         ],
-        selectedPrices: [],
+        selectedAreas: [],
         selectedRooms: [],
         locationMainActiveIndex: 0,
         locationActiveIds: [],
@@ -26,21 +26,21 @@ Page({
         this.onFetchHouse({});
     },
 
-    updateSelectedPrice({currentTarget}) {
+    updateSelectedArea({currentTarget}) {
         const { dataset } = currentTarget;
         const {
-            selectedPrices
+            selectedAreas
         } = this.data;
 
-        const index = selectedPrices.indexOf(dataset.index);
+        const index = selectedAreas.indexOf(dataset.index);
         if (index > -1) {
-            selectedPrices.splice(index, 1);
+            selectedAreas.splice(index, 1);
         } else {
-            selectedPrices.push(dataset.index);
+            selectedAreas.push(dataset.index);
         }
 
         this.setData({
-            selectedPrices
+            selectedAreas
         });
     },
 
@@ -93,12 +93,12 @@ Page({
                     locationIds: that.data.locationActiveIds,
                     q: that.data.q,
                     rooms: that.data.selectedRooms,
-                    prices: function() {
-                        const prices = [];
-                        that.data.selectedPrices.map(index => {
-                            prices.push(that.data.priceRange[index]);
+                    areas: function() {
+                        const areas = [];
+                        that.data.selectedAreas.map(index => {
+                            areas.push(that.data.areaRange[index]);
                         });
-                        return prices;
+                        return areas;
                     }()
                 },
             })
@@ -155,9 +155,9 @@ Page({
         });
     },
 
-    onClearPrices() {
+    onClearAreas() {
         this.setData({
-            selectedPrices: []
+            selectedAreas: []
         });
     },
 

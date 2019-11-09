@@ -13,16 +13,16 @@
     </van-tab>
     <van-tab title="面积" custom-class="tab-content">
         <van-row>
-            <van-col span="6" wx:for="{{ priceRange }}" wx:key="index">
+            <van-col span="6" wx:for="{{ areaRange }}" wx:key="index">
                 <van-button 
                     type="warning" 
-                    plain="{{ !helpers.includes(selectedPrices, index) }}" 
-                    bind:click="updateSelectedPrice"
+                    plain="{{ !helpers.includes(selectedAreas, index) }}" 
+                    bind:click="updateSelectedArea"
                     data-index="{{ index }}" 
                     size="small" 
                     custom-class="btn">
-                        <text wx:if="{{item.min==0}}">{{item.max}}㎡以下</text>
-                        <text wx:elif="{{item.max==0}}">{{item.min}}㎡以上</text>
+                        <text wx:if="{{!item.min}}">{{item.max}}㎡以下</text>
+                        <text wx:elif="{{!item.max}}">{{item.min}}㎡以上</text>
                         <text wx:else>{{item.min}}-{{item.max}}㎡</text>
                     </van-button>
             </van-col>
@@ -30,7 +30,7 @@
         <van-row>
             <van-col offset="12" span="12">
                 <van-button type="danger" size="small" custom-class="nav-btn" bind:click="onFetchHouse">确定</van-button>
-                <van-button type="default" size="small" custom-class="nav-btn" bind:click="onClearPrices">重置</van-button>
+                <van-button type="default" size="small" custom-class="nav-btn" bind:click="onClearAreas">重置</van-button>
             </van-col>
         </van-row>
     </van-tab>

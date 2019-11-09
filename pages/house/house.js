@@ -4,7 +4,7 @@ import Toast from '../../miniprogram_npm/vant-weapp/toast/toast';
 Page({
     data: {
         page: 1,
-        pageSize: 10,
+        pageSize: 20,
         fetching: false,
         isEnd: false,
         q: undefined,
@@ -15,6 +15,10 @@ Page({
         priceRange: [
             {min:0, max:200}, {min:200, max:300}, {min:300, max:400}, {min:400, max:500}, {min:500, max:600}, {min:600, max:0}
         ],
+        areaRange: [
+            { min: 0, max: 50 }, { min: 50, max: 70 }, { min: 70, max: 90 }, { min: 90, max: 110 }, { min: 110, max: 140 }, { min: 140, max: 170 }, { min: 170, max: 200 }, { min: 200 }
+        ],
+        selectedAreas: [],
         selectedPrices: [],
         selectedRooms: [],
         locationMainActiveIndex: 0,
@@ -99,6 +103,13 @@ Page({
                             prices.push(that.data.priceRange[index]);
                         });
                         return prices;
+                    }(),
+                    areas: function () {
+                        const areas = [];
+                        that.data.selectedAreas.map(index => {
+                            areas.push(that.data.areaRange[index]);
+                        });
+                        return areas;
                     }()
                 },
             })
@@ -164,6 +175,12 @@ Page({
         });
     },
 
+    onClearAreas() {
+        this.setData({
+            selectedAreas: []
+        });
+    },
+
     noop() { },
 
     onUpdateQ({ detail }) {
@@ -173,6 +190,24 @@ Page({
     onUpdateSelectedRooms({ detail }) {
         this.setData({
             selectedRooms: detail
+        });
+    },
+
+    onUpdateSelectedArea({ currentTarget }) {
+        const { dataset } = currentTarget;
+        const {
+            selectedAreas
+        } = this.data;
+
+        const index = selectedAreas.indexOf(dataset.index);
+        if (index > -1) {
+            selectedAreas.splice(index, 1);
+        } else {
+            selectedAreas.push(dataset.index);
+        }
+
+        this.setData({
+            selectedAreas
         });
     },
 
