@@ -1,21 +1,15 @@
 {
     "usingComponents": {
         "van-button": "vant-weapp/button",
-        "van-search": "vant-weapp/search",
         "van-row": "vant-weapp/row",
         "van-col": "vant-weapp/col",
-        "van-tabs": "vant-weapp/tabs-pro",
-        "van-tab": "vant-weapp/tab-pro",
         "van-cell-group": "vant-weapp/cell-group",
         "van-cell": "vant-weapp/cell",
-        "van-tree-select": "vant-weapp/tree-select",
-        "van-checkbox": "vant-weapp/checkbox",
-        "van-checkbox-group": "vant-weapp/checkbox-group",
         "van-panel": "vant-weapp/panel",
         "van-divider": "vant-weapp/divider",
         "van-tag": "vant-weapp/tag",
         "van-toast": "vant-weapp/toast",
-        "van-loading": "vant-weapp/loading"
-    },
-    "enablePullDownRefresh": true
+        "van-loading": "vant-weapp/loading",
+        "van-icon": "vant-weapp/icon"
+    }
 }

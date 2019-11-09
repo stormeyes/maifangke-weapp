@@ -1,8 +1,12 @@
 <van-cell-group title="工具">
-  <van-cell title="计算器" icon="orders-o"></van-cell>
+    <van-cell title="计算器" icon="orders-o"></van-cell>
 </van-cell-group>
 <van-cell-group title="关于">
-  <van-cell title="关于作者" is-link icon="contact" />
-  <van-cell title="公众号" value="买个房子" icon="chat-o"/>
-  <van-cell title="软件版本" value="1.0" icon="setting-o"/>
+    <van-cell title="关于作者" is-link icon="contact" />
+    <van-cell title="公众号" value="买个房子" icon="chat-o" />
+    <van-cell title="软件版本" value="1.0" icon="setting-o" />
+    <button open-type="contact" class="fake-cell">
+        <van-icon name="phone-o" custom-class="fake-cell-icon" />
+        联系客服
+    </button>
 </van-cell-group>

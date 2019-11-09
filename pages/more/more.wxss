@@ -1,1 +1,41 @@
-/* pages/more/more.wxss */
+.fake-cell-icon {
+    margin-right: 5px;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    height: 24px;
+    font-size: 16px;
+}
+
+.fake-cell {
+    position: relative;
+    display: -webkit-flex;
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 14px;
+    line-height: 24px;
+    color: #333;
+    color: var(--text-color, #333);
+    background-color: #fff;
+    background-color: var(--white, #fff);
+    border: none;
+    border-color: white;
+}
+
+.fake-cell::after {
+    position: absolute;
+    box-sizing: border-box;
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    content: " ";
+    pointer-events: none;
+    top: 24px;
+    right: 0;
+    bottom: 0;
+    left: 15px;
+    border-bottom: 1px solid #eee;
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+}
