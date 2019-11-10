@@ -18,11 +18,18 @@ Page({
         areaRange: [
             { min: 0, max: 50 }, { min: 50, max: 70 }, { min: 70, max: 90 }, { min: 90, max: 110 }, { min: 110, max: 140 }, { min: 140, max: 170 }, { min: 170, max: 200 }, { min: 200 }
         ],
+        featureRange: [
+            {text: "满五唯一", value: "fiveAndUniq"},
+            {text: "红本在手", value: "noLoan"},
+            {text: "只看住宅", value: "houseOnly"},
+            {text: "包含下线房源", value: "offlineInclude"}
+        ],
         towardsRange: ["东", "西", "南", "北"],
         selectedTowards: [],
         selectedAreas: [],
         selectedPrices: [],
         selectedRooms: [],
+        selectedFeatures: [],
         locationMainActiveIndex: 0,
         locationActiveIds: [],
         houses: [],
@@ -120,6 +127,13 @@ Page({
                             towards.push(that.data.towardsRange[index]);
                         });
                         return towards;
+                    }(),
+                    features: function () {
+                        const features = [];
+                        that.data.selectedFeatures.map(index => {
+                            features.push(that.data.featureRange[index].value);
+                        });
+                        return features;
                     }()
                 },
             })
@@ -201,6 +215,24 @@ Page({
     onUpdateSelectedRooms({ detail }) {
         this.setData({
             selectedRooms: detail
+        });
+    },
+
+    onUpdateSelectedFeatures({ currentTarget }) {
+        const { dataset } = currentTarget;
+        const {
+            selectedFeatures
+        } = this.data;
+
+        const index = selectedFeatures.indexOf(dataset.index);
+        if (index > -1) {
+            selectedFeatures.splice(index, 1);
+        } else {
+            selectedFeatures.push(dataset.index);
+        }
+
+        this.setData({
+            selectedFeatures
         });
     },
 

@@ -42,6 +42,7 @@ const get_schools_by_department_id = async function(connection, department_id) {
 
 // 云函数入口函数
 exports.main = async (event, context) => {
+    const pre_house_online_text = `house.status='ONLINE'`;
     const connection = await mysql.createConnection({
         host: 'cdb-kvzkkqnb.gz.tencentcdb.com',
         user: 'root',
@@ -50,7 +51,7 @@ exports.main = async (event, context) => {
         database: 'shenfangke'
     });
 
-    cond = [];
+    cond = [pre_house_online_text];
     const limit = event.pageSize || 20;
     const offset = ((event.page || 1) - 1) * limit;
 
@@ -104,6 +105,27 @@ exports.main = async (event, context) => {
             temp.push(`(house.orientation like "%${toward}%")`);
         });
         cond.push(temp.join(' OR '));
+    }
+
+    if (event.features && event.features.length) {
+        if (event.features.includes("fiveAndUniq")) {
+            cond.push("house.registerTime='满五年' AND house.isUnique='唯一住宅'");
+        }
+
+        if (event.features.includes("noLoan")) {
+            cond.push("house.loan=0");
+        }
+
+        if (event.features.includes("houseOnly")) {
+            cond.push("house.houseType='普通住宅'");
+        }
+
+        if (event.features.includes("offlineInclude")) {
+            const index_of_pre_text = cond.indexOf(pre_house_online_text);
+            if (index > -1) {
+                cond.splice(index_of_pre_text, 1);
+            }
+        }
     }
 
     const whereSQL = cond.length ? "where " + cond.join(" and ") : "";

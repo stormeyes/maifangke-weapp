@@ -83,60 +83,16 @@
         </van-row>
         <van-row>
             <sticky title="特点" />
-            <van-col span="6">
+            <van-col span="6" wx:for="{{ featureRange }}" wx:key="index">
                 <van-button 
-                    type="warning" 
-                    plain="{{ true }}" 
-                    bind:click="updateSelectedPrice"
+                    type="danger" 
+                    plain="{{ !helpers.includes(selectedFeatures, index) }}" 
+                    bind:click="onUpdateSelectedFeatures"
                     data-index="{{ index }}" 
                     size="small" 
                     custom-class="btn">
-                        <text>满五唯一</text>
-                </van-button>
-            </van-col>
-            <van-col span="6">
-                <van-button 
-                    type="warning" 
-                    plain="{{ true }}" 
-                    bind:click="updateSelectedPrice"
-                    data-index="{{ index }}" 
-                    size="small" 
-                    custom-class="btn">
-                        <text>红本在手</text>
-                </van-button>
-            </van-col>
-            <van-col span="6">
-                <van-button 
-                    type="warning" 
-                    plain="{{ true }}" 
-                    bind:click="updateSelectedPrice"
-                    data-index="{{ index }}" 
-                    size="small" 
-                    custom-class="btn">
-                        <text>豪宅线以下</text>
-                </van-button>
-            </van-col>
-            <van-col span="6">
-                <van-button 
-                    type="warning" 
-                    plain="{{ true }}" 
-                    bind:click="updateSelectedPrice"
-                    data-index="{{ index }}" 
-                    size="small" 
-                    custom-class="btn">
-                        <text>只看住宅</text>
-                </van-button>
-            </van-col>
-            <van-col span="6">
-                <van-button 
-                    type="warning" 
-                    plain="{{ true }}" 
-                    bind:click="updateSelectedPrice"
-                    data-index="{{ index }}" 
-                    size="small" 
-                    custom-class="btn">
-                        <text>包含下线房源</text>
-                </van-button>
+                        <text>{{item.text}}</text>
+                    </van-button>
             </van-col>
         </van-row>
         <van-row>
