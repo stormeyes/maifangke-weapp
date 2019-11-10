@@ -15,7 +15,8 @@
         "van-divider": "vant-weapp/divider",
         "van-tag": "vant-weapp/tag",
         "van-toast": "vant-weapp/toast",
-        "van-loading": "vant-weapp/loading"
+        "van-loading": "vant-weapp/loading",
+        "sticky": "/components/sticky/sticky"
     },
     "enablePullDownRefresh": true
 }

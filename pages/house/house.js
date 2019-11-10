@@ -18,6 +18,8 @@ Page({
         areaRange: [
             { min: 0, max: 50 }, { min: 50, max: 70 }, { min: 70, max: 90 }, { min: 90, max: 110 }, { min: 110, max: 140 }, { min: 140, max: 170 }, { min: 170, max: 200 }, { min: 200 }
         ],
+        towardsRange: ["东", "西", "南", "北"],
+        selectedTowards: [],
         selectedAreas: [],
         selectedPrices: [],
         selectedRooms: [],
@@ -111,6 +113,13 @@ Page({
                             areas.push(that.data.areaRange[index]);
                         });
                         return areas;
+                    }(),
+                    towards: function(){
+                        const towards = [];
+                        that.data.selectedTowards.map(index => {
+                            towards.push(that.data.towardsRange[index]);
+                        });
+                        return towards;
                     }()
                 },
             })
@@ -176,8 +185,9 @@ Page({
         });
     },
 
-    onClearAreas() {
+    onClearMore() {
         this.setData({
+            selectedTowards: [],
             selectedAreas: []
         });
     },
@@ -209,6 +219,24 @@ Page({
 
         this.setData({
             selectedAreas
+        });
+    },
+
+    onUpdateSelectedTowards({ currentTarget }) {
+        const { dataset } = currentTarget;
+        const {
+            selectedTowards
+        } = this.data;
+
+        const index = selectedTowards.indexOf(dataset.index);
+        if (index > -1) {
+            selectedTowards.splice(index, 1);
+        } else {
+            selectedTowards.push(dataset.index);
+        }
+
+        this.setData({
+            selectedTowards
         });
     },
 

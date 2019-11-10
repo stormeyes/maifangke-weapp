@@ -98,7 +98,17 @@ exports.main = async (event, context) => {
         cond.push(temp.join(' OR '));
     }
 
+    if (event.towards && event.towards.length) {
+        const temp = [];
+        event.towards.map(toward => {
+            temp.push(`(house.orientation like "%${toward}%")`);
+        });
+        cond.push(temp.join(' OR '));
+    }
+
     const whereSQL = cond.length ? "where " + cond.join(" and ") : "";
+
+    console.log(whereSQL)
 
     const [houses, fields] = await connection.execute(`SELECT 
         house.houseId, house.houseType, house.orientation, house.area, house.price, house.room, house.ting, house.loan, house.isUnique, 

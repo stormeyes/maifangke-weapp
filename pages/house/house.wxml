@@ -1,3 +1,4 @@
+<sticky></sticky>
 <van-row>
     <van-search value="{{ q }}" placeholder="请输入小区名称" bind:search="onFetchHouse" bind:change="onUpdateQ"/>
 </van-row>
@@ -51,9 +52,7 @@
     </van-tab>
     <van-tab title="更多">
         <van-row>
-            <view style="margin:5px 10px">
-                <h3>面积范围</h3>
-            </view>
+            <sticky title="面积范围" />
             <van-col span="6" wx:for="{{ areaRange }}" wx:key="index">
                 <van-button 
                     type="danger" 
@@ -69,58 +68,21 @@
             </van-col>
         </van-row>
         <van-row>
-            <view style="margin:5px 10px">
-                <h4>朝向包含</h4>
-            </view>
-            <van-col span="6">
+            <sticky title="朝向包含" />
+            <van-col span="6" wx:for="{{ towardsRange }}" wx:key="index">
                 <van-button 
-                    type="warning" 
-                    plain="{{ true }}" 
-                    bind:click="updateSelectedPrice"
+                    type="danger" 
+                    plain="{{ !helpers.includes(selectedTowards, index) }}" 
+                    bind:click="onUpdateSelectedTowards"
                     data-index="{{ index }}" 
                     size="small" 
                     custom-class="btn">
-                        <text>东</text>
-                </van-button>
-            </van-col>
-            <van-col span="6">
-                <van-button 
-                    type="warning" 
-                    plain="{{ true }}" 
-                    bind:click="updateSelectedPrice"
-                    data-index="{{ index }}" 
-                    size="small" 
-                    custom-class="btn">
-                        <text>南</text>
-                </van-button>
-            </van-col>
-            <van-col span="6">
-                <van-button 
-                    type="warning" 
-                    plain="{{ true }}" 
-                    bind:click="updateSelectedPrice"
-                    data-index="{{ index }}" 
-                    size="small" 
-                    custom-class="btn">
-                        <text>西</text>
-                </van-button>
-            </van-col>
-            <van-col span="6">
-                <van-button 
-                    type="warning" 
-                    plain="{{ true }}" 
-                    bind:click="updateSelectedPrice"
-                    data-index="{{ index }}" 
-                    size="small" 
-                    custom-class="btn">
-                        <text>北</text>
-                </van-button>
+                        <text>{{item}}</text>
+                    </van-button>
             </van-col>
         </van-row>
         <van-row>
-            <view style="margin:5px 10px">
-                <h3>特点</h3>
-            </view>
+            <sticky title="特点" />
             <van-col span="6">
                 <van-button 
                     type="warning" 
@@ -180,7 +142,7 @@
         <van-row>
             <van-col offset="12" span="12">
                 <van-button type="danger" size="small" custom-class="nav-btn" bind:click="onFetchHouse">确定</van-button>
-                <van-button type="default" size="small" custom-class="nav-btn" bind:click="onClearAreas">重置</van-button>
+                <van-button type="default" size="small" custom-class="nav-btn" bind:click="onClearMore">重置</van-button>
             </van-col>
         </van-row>
     </van-tab>
