@@ -2,7 +2,6 @@
     "pages": [
         "pages/house/house",
         "pages/more/more",
-        "pages/more/about",
         "pages/bargain/bargain"
     ],
     "window": {
