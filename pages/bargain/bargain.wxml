@@ -15,7 +15,7 @@
         <van-row>
             <van-col span="6" wx:for="{{ areaRange }}" wx:key="index">
                 <van-button 
-                    type="warning" 
+                    type="danger" 
                     plain="{{ !helpers.includes(selectedAreas, index) }}" 
                     bind:click="updateSelectedArea"
                     data-index="{{ index }}" 
