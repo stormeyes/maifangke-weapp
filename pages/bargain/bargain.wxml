@@ -51,6 +51,7 @@
     </van-tab>
 </van-tabs>
 <van-row>
+    <van-divider contentPosition="center" wx:if="{{ !houses.length }}">没有结果</van-divider>
     <van-panel wx:for="{{ houses }}" wx:key="index" 
         title="{{ item.name }} {{ item.roomType }} {{ item.area }}㎡" 
         status="{{ item.bargainPrice }}万" 

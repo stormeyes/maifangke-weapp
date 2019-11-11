@@ -104,6 +104,7 @@
     </van-tab>
 </van-tabs>
 <van-row>
+    <van-divider contentPosition="center" wx:if="{{ !houses.length }}">没有结果</van-divider>
     <van-panel wx:for="{{ houses }}" wx:key="houseId" title="{{ item.name }} {{ item.roomType }} {{ item.area }}㎡" status="{{ item.price }}万" desc="{{ item.location }}">
         <view class="house_detail" wx:if="{{item.schools}}">
             <van-tag type="warning">学位</van-tag> {{ item.schools }}
